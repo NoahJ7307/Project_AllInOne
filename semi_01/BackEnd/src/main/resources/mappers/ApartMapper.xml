@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allinone.apart.prototype.mapper.ApartMapper">
+    <select id="list" resultType="com.allinone.apart.prototype.vo.ApartVO">
+        select * from householder
+    </select>
+    <insert id="insert" parameterType="com.allinone.apart.prototype.vo.ApartVO">
+        insert into householder(   mid ,
+                                password ,
+                                name ,
+                                carnumber ,
+                                birth,
+                                dong ,
+                                ho ,
+                                phonenumber )
+            values(#{mid}, #{password},#{name},#{carnumber},#{birth},#{dong} ,  #{ho} ,  #{phonenumber} )
+    </insert>
+
+</mapper>
