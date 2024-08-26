@@ -31,7 +31,6 @@ const UserForm = () => {
             })
             .catch((error) => {
                 console.error('There was an error submitting the form:', error);
-                // Handle error (e.g., show an error message)
             });
     };
 
@@ -39,7 +38,9 @@ const UserForm = () => {
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                flex: 4, p: 2,
+                '& .MuiTextField-root': { m: 1 },
+                height: '100vh'
             }}
             noValidate
             autoComplete="off"
@@ -52,6 +53,7 @@ const UserForm = () => {
                     label="아이디"
                     value={formData.mid}
                     onChange={handleInputChange}
+                    fullWidth
                 />
             </div>
             <div>
@@ -61,6 +63,7 @@ const UserForm = () => {
                     label="비밀번호"
                     value={formData.password}
                     onChange={handleInputChange}
+                    fullWidth
                 />
             </div>
             <div>
@@ -70,6 +73,7 @@ const UserForm = () => {
                     label="이름"
                     value={formData.name}
                     onChange={handleInputChange}
+                    fullWidth
                 />
             </div>
             <div>
@@ -79,9 +83,10 @@ const UserForm = () => {
                     label="차번호"
                     value={formData.carnumber}
                     onChange={handleInputChange}
+                    fullWidth
                 />
             </div>
-            
+
             <div>
                 <TextField
                     required
@@ -89,6 +94,7 @@ const UserForm = () => {
                     label="나이"
                     value={formData.birth}
                     onChange={handleInputChange}
+                    fullWidth
                 />
             </div>
 
@@ -99,6 +105,7 @@ const UserForm = () => {
                     label="동"
                     value={formData.dong}
                     onChange={handleInputChange}
+                    fullWidth
                 />
             </div>
 
@@ -109,6 +116,7 @@ const UserForm = () => {
                     label="호"
                     value={formData.ho}
                     onChange={handleInputChange}
+                    fullWidth
                 />
             </div>
             <div>
@@ -118,6 +126,7 @@ const UserForm = () => {
                     label="전화번호"
                     value={formData.phonenumber}
                     onChange={handleInputChange}
+                    fullWidth
                 />
             </div>
             <Button type="submit" onClick={handleSubmit} variant="contained" color="primary">
