@@ -4,6 +4,7 @@ import Pets from '@mui/icons-material/Pets';
 import { Logout, Login, AddBox } from '@mui/icons-material';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 
 const StyledToolbar = styled(Toolbar)({
@@ -31,10 +32,6 @@ const UserBox = styled(Box)(({ theme }) => ({
     }
 }))
 const Navbar = () => {
-    // Title >> 현재 1번 ID 이름으로 설정되어있음
-    // 회원 가입 시 아파트 이름 추가
-    // - 아파트 목록 DB 추가
-    // - 회원 가입시 선택항목 (list)에서 선택
 
     const [users, setUsers] = useState([])
     useEffect(() => {
@@ -48,29 +45,31 @@ const Navbar = () => {
             });
     }, []);
     return (
-        <AppBar position='sticky'>
+        <AppBar position='sticky' >
             <StyledToolbar >
                 <Typography variant='h6' sx={{
                     display: {
                         xs: "none", sm: "block"
                     }
-                }}>{users.length > 0 ? users.find(i => i.id === 1)?.name || 'ID 없음' : 'Data 없음'}</Typography>
+                }}>{users.length > 0 ? users.find(i => i.id === 3)?.mid || 'ID 없음' : 'Data 없음'}</Typography>
                 <Pets sx={{
                     display: {
                         xs: "block", sm: "none"
                     }
                 }} />
                 <Icons>
-                    {/* Login components 추가 필요 */}
                     <Link to="/login" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
                         <Typography sx={{ mr: 1 }}>Login</Typography>
                         <Login />
                     </Link>
-                    <Link to="/yu" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                    <Link to="/register" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
                         <Typography sx={{ mr: 1 }}>Join</Typography>
                         <AddBox />
                     </Link>
-                    {/* Logout components 추가 필요 */}
+                    <Link to="/my_page" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                        <Typography sx={{ mr: 1 }}>MyPage</Typography>
+                        <AccountBoxIcon />
+                    </Link>
                     <Link to="/logout" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
                         <Typography sx={{ mr: 1 }}>Logout</Typography>
                         <Logout />

@@ -3,13 +3,19 @@ import { Box, createTheme, Stack, ThemeProvider } from "@mui/material";
 import { useState } from "react";
 import ServerTest from "./components/ServerTest";
 import Add from "./components/Add";
-import Ex01 from "./components/allInOne/Ex01";
 import Login from "./components/allInOne/Login";
 import Logout from "./components/allInOne/Logout";
 import Sidebar from "./components/allInOne/Sidebar";
 import Feed from "./components/allInOne/Feed";
 import Rightbar from "./components/allInOne/Rightbar";
 import Navbar from "./components/allInOne/Navbar";
+import Mypage from "./components/allInOne/Mypage";
+import Register from "./components/allInOne/Register";
+import Reservation from "./components/allInOne/Reservation";
+import Revise from "./components/allInOne/Revise";
+import StudyRoom from "./components/allInOne/StudyRoom";
+import VisitPark from "./components/allInOne/VisitPark";
+import VisitList from "./components/allInOne/VisitList";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -30,9 +36,15 @@ function App() {
             <Routes>
               <Route path="/user" element={<ServerTest />} />
               <Route path="/" element={<Feed />} />
-              <Route path="/yu" element={<Ex01 />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
+              <Route path="/my_page" element={<Mypage />} />
+              <Route path="/study_res" element={<StudyRoom />} />
+              <Route path="/revise" element={<Revise />} />
+              <Route path="/reservation" element={<Reservation />} />
+              <Route path="/visitpark" element={<VisitPark />} />
+              <Route path="/visitlist" element={<VisitList />} />
             </Routes>
             <Rightbar />
           </Stack>

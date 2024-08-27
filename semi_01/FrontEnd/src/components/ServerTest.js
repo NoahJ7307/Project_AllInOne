@@ -36,7 +36,7 @@ const ServerTest = () => {
                         <TableRow>
                             <TableCell>이름 </TableCell>
                             <TableCell align="right">차번호</TableCell>
-                            <TableCell align="right">나이</TableCell>
+                            <TableCell align="right">주민등록번호</TableCell>
                             <TableCell align="right">동</TableCell>
                             <TableCell align="right">호</TableCell>
                             <TableCell align="right">전화번호</TableCell>
@@ -52,7 +52,7 @@ const ServerTest = () => {
                                     {row.name}
                                 </TableCell>
                                 <TableCell align="right">{row.carnumber}</TableCell>
-                                <TableCell align="right">{row.birth}</TableCell>
+                                <TableCell align="right">{row.residentNumber}</TableCell>
                                 <TableCell align="right">{row.dong}</TableCell>
                                 <TableCell align="right">{row.ho}</TableCell>
                                 <TableCell align="right">{row.phonenumber}</TableCell>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allinone.apart.prototype.mapper.VisitMapper">
+    <select id="list" resultType="com.allinone.apart.prototype.vo.VisitVO">
+        select * from visit_park
+    </select>
+    <insert id="insert" parameterType="com.allinone.apart.prototype.vo.VisitVO">
+        insert into visit_park(
+            name_visit ,
+            phone_visit ,
+            carNumber_visit ,
+            date_visit ,
+            dong_visit ,
+            ho_visit)
+        values(#{name_visit}, #{phone_visit},#{carNumber_visit},#{date_visit},#{dong_visit},#{ho_visit} )
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete from visit_park
+        where id_visit = #{id_visit}
+    </delete>
+</mapper>

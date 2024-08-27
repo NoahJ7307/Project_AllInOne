@@ -54,7 +54,7 @@ const Navbar = () => {
                     display: {
                         xs: "none", sm: "block"
                     }
-                }}>{users.length > 0 ? users.find(i => i.id === 1)?.name || 'ID 없음' : 'Data 없음'}</Typography>
+                }}>{users.length > 0 ? users.find(i => i.id === 8)?.mid || 'ID 없음' : 'Data 없음'}</Typography>
                 <Pets sx={{
                     display: {
                         xs: "block", sm: "none"

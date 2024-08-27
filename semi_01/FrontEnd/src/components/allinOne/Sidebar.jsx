@@ -52,15 +52,15 @@ const Sidebar = () => {
                 <Collapse in={openCar} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem disablePadding>
-                            <ListItemButton component={Link} to="/">
+                            <ListItemButton component={Link} to="/visitpark">
                                 <EmojiTransportationIcon />
                                 <ListItemText primary="예약 등록" sx={{ pl: 4 }} />
                             </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton component={Link} to="/">
+                            <ListItemButton component={Link} to="/visitlist">
                                 <CarCrashIcon />
-                                <ListItemText primary="입출차 관리" sx={{ pl: 4 }} />
+                                <ListItemText primary="방문예약 관리" sx={{ pl: 4 }} />
                             </ListItemButton>
                         </ListItem>
                     </List>
@@ -78,7 +78,7 @@ const Sidebar = () => {
                 <Collapse in={openCommunity} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem disablePadding>
-                            <ListItemButton component={Link} to="/">
+                            <ListItemButton component={Link} to="/study_res">
                                 <AutoStoriesOutlinedIcon />
                                 <ListItemText primary="독서실" sx={{ pl: 4 }} />
                             </ListItemButton>

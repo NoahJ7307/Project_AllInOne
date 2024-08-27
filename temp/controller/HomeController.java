@@ -20,18 +20,17 @@ public class HomeController {
         System.out.println("this is love");
         return  mapper.list();
     }
-
     @PostMapping
     public String insertPost(@RequestBody ApartVO vo){
         System.out.println("post constoller insert " +vo);
         int cnt = mapper.insert(vo);
         return cnt !=0 ? "성공":"실패";
     }
-
-    @PutMapping
+   @PutMapping
     public String updatePost(@RequestBody ApartVO vo){
         System.out.println("post constoller update " +vo);
         int cnt = mapper.update(vo);
         return cnt !=0 ? "성공":"실패";
     }
+
 }
