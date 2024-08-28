@@ -21,18 +21,19 @@
     <update id="update" parameterType="com.allinone.apart.prototype.vo.ApartVO">
         update householder
         set password = #{password},
-        name = #{name},
-        set carnumber = #{carnumber},
-        residentNumber = #{residentNumber},
-        set dong = #{dong},
-        set ho = #{ho},
-        set phonenumber = #{phonenumber}
+        carnumber = #{carnumber},
+        dong = #{dong},
+        ho = #{ho},
+        phonenumber = #{phonenumber}
         where mid = #{mid}
-
     </update>
 
-    <!--    <select id="checkMid" parameterType="String" resultType="com.allinone.apart.prototype.vo.ApartVO">
-        select * from householder where mid = #{mid}
-    </select>-->
+    <select id="checkMid" resultType="String">
+        select password from householder where mid = #{mid}
+    </select>
+
+    <delete id="delete" parameterType="com.allinone.apart.prototype.vo.ApartVO">
+        DELETE FROM householder WHERE mid = #{mid}
+    </delete>
 
 </mapper>

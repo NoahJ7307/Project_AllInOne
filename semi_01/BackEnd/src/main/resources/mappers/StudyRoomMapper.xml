@@ -13,5 +13,14 @@
     <delete id="deleteReservation" parameterType="int">
         delete from reservation_studyRoom where rno=#{rno}
     </delete>
+    <select id="reservationByRno" resultType="com.allinone.apart.prototype.vo.StudyRoomVO">
+        select * from reservation_studyRoom where rno=#{rno}
+    </select>
+    <update id="updateReservation" parameterType="com.allinone.apart.prototype.vo.StudyRoomVO">
+        update  reservation_studyRoom
+        set seatNum=#{seatNum} ,time=#{time},
+        date=#{date}
+        where rno=#{rno}
+    </update>
 
 </mapper>

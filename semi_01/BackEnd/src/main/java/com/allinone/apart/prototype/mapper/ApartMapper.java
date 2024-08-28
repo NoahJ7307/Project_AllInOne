@@ -12,4 +12,6 @@ public interface ApartMapper {
     public int insert(ApartVO vo);
     public List<ApartVO> list();
     public int update(ApartVO vo);
+    String checkMid(String mid);
+    public int delete(String mid);
 }

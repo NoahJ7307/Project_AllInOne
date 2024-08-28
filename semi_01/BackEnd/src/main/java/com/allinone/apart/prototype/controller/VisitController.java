@@ -18,22 +18,34 @@ public class VisitController {
 
     @GetMapping
     public List<VisitVO> visitlist(){
-        System.out.println("good");
+        System.out.println("get data");
         return  visitMapper.list();
-
     }
 
     @PostMapping
     public String insertPost(@RequestBody VisitVO vo){
-        System.out.println("post constoller insert " +vo);
+        System.out.println("post controller insert " +vo);
         int cnt = visitMapper.insert(vo);
         return cnt !=0 ? "성공":"실패";
     }
 
     @DeleteMapping("/{selected}")
     public List<VisitVO> delete(@PathVariable int selected) {
-        System.out.println(selected);
+        System.out.println("delete controller delete" + selected);
         visitMapper.delete(selected);
         return visitMapper.list();
+    }
+
+    @PutMapping
+    public List<VisitVO> update(@RequestBody VisitVO vo){
+        System.out.println("put controller update" + vo);
+        visitMapper.update(vo);
+        return visitMapper.list();
+    }
+
+    @GetMapping("/search")
+    public List<VisitVO> searchList(@RequestParam String category, @RequestParam String search){
+        System.out.println("search keyword : "+search+" / "+category);
+        return  visitMapper.search(search, category);
     }
 }

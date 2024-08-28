@@ -15,12 +15,15 @@ create table householder(
 drop tables reservation_studyRoom;
 
 create table reservation_studyRoom(
-	rno int primary key auto_increment, -- rno추가함 
+	rno int primary key auto_increment,
 	date date,
-    time time,
+    time varchar(100),  
     seatNum int,
     uid int, foreign key(uid) references householder(id) 
 );
+
+
+
 
 select * from householder;
 select * from reservation_studyRoom;

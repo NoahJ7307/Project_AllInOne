@@ -21,4 +21,36 @@
         delete from visit_park
         where id_visit = #{id_visit}
     </delete>
+
+    <update id="update" parameterType="com.allinone.apart.prototype.vo.VisitVO">
+        update visit_park set
+            name_visit = #{name_visit},
+            phone_visit = #{phone_visit},
+            date_visit = #{date_visit},
+            dong_visit = #{dong_visit},
+            ho_visit = #{ho_visit},
+            carNumber_visit = #{carNumber_visit}
+        where id_visit = #{id_visit}
+    </update>
+
+    <select id="search" resultType="com.allinone.apart.prototype.vo.VisitVO">
+        select * from visit_park
+        <where>
+            <if test="category == 'name_visit'">
+                name_visit like concat('%', #{search}, '%')
+            </if>
+            <if test="category == 'phone_visit'">
+                phone_visit like concat('%', #{search}, '%')
+            </if>
+            <if test="category == 'carNumber_visit'">
+                carNumber_visit like concat('%', #{search}, '%')
+            </if>
+            <if test="category == 'dong_visit'">
+                dong_visit like concat('%', #{search}, '%')
+            </if>
+            <if test="category == 'ho_visit'">
+                ho_visit like concat('%', #{search}, '%')
+            </if>
+        </where>
+    </select>
 </mapper>

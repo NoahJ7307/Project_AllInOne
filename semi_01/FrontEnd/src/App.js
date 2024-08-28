@@ -1,21 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box, createTheme, Stack, ThemeProvider } from "@mui/material";
 import { useState } from "react";
-import ServerTest from "./components/ServerTest";
-import Add from "./components/Add";
-import Login from "./components/allInOne/Login";
-import Logout from "./components/allInOne/Logout";
+import Login from "./components/allInOne/user/Login";
+import Logout from "./components/allInOne/user/Logout";
+import Mypage from "./components/allInOne/user/Mypage";
+import Revise from "./components/allInOne/user/Revise";
+import Register from "./components/allInOne/user/Register";
+import VisitPark from "./components/allInOne/visit/VisitPark";
+import VisitList from "./components/allInOne/visit/VisitList";
+import StudyRoom from "./components/allInOne/study/StudyRoom";
+import Reservation from "./components/allInOne/study/Reservation";
+import ServerTest from "./components/allInOne/ServerTest";
 import Sidebar from "./components/allInOne/Sidebar";
-import Feed from "./components/allInOne/Feed";
-import Rightbar from "./components/allInOne/Rightbar";
 import Navbar from "./components/allInOne/Navbar";
-import Mypage from "./components/allInOne/Mypage";
-import Register from "./components/allInOne/Register";
-import Reservation from "./components/allInOne/Reservation";
-import Revise from "./components/allInOne/Revise";
-import StudyRoom from "./components/allInOne/StudyRoom";
-import VisitPark from "./components/allInOne/VisitPark";
-import VisitList from "./components/allInOne/VisitList";
+import Home from "./components/Home";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -34,8 +32,8 @@ function App() {
           <Stack direction="row" spacing={2} justifyContent="space-between">
             <Sidebar setMode={setMode} mode={mode} />
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/user" element={<ServerTest />} />
-              <Route path="/" element={<Feed />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
@@ -46,9 +44,7 @@ function App() {
               <Route path="/visitpark" element={<VisitPark />} />
               <Route path="/visitlist" element={<VisitList />} />
             </Routes>
-            <Rightbar />
           </Stack>
-          <Add />
         </Box>
       </Router>
     </ThemeProvider>

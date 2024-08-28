@@ -28,10 +28,18 @@ public class HomeController {
         return cnt !=0 ? "성공":"실패";
     }
 
-    @PutMapping
-    public String updatePost(@RequestBody ApartVO vo){
-        System.out.println("post constoller update " +vo);
+    @PutMapping("/{mid}")
+    public String updatePost(@RequestBody ApartVO vo, @PathVariable String mid) {
+        System.out.println("post controller update mid=" + mid + " ApartVO=" + vo);
+        vo.setMid(mid);
         int cnt = mapper.update(vo);
-        return cnt !=0 ? "성공":"실패";
+        return cnt != 0 ? "성공" : "실패";
+    }
+
+    @DeleteMapping("/{mid}")
+    public String deletePost(@PathVariable String mid) {
+        System.out.println("post controller delete mid="+ mid);
+        int cnt = mapper.delete(mid);
+        return cnt != 0 ? "삭제 성공" : "삭제 실패: 사용자 없음";
     }
 }

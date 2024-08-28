@@ -14,17 +14,16 @@ import java.time.LocalTime;
 @Setter
 @ToString
 
-
 public class StudyRoomVO {
     private int uid;
     private LocalDate date;
-    private LocalTime time;
+    private String time; // 여기 수정함 10:22
     private int seatNum;
     private int rno;
 
-    public StudyRoomVO(LocalDate date, LocalTime time, int seatNum) {
-        this.date = date;
-        this.time = time;
-        this.seatNum = seatNum;
-    }
+//    public StudyRoomVO(LocalDate date, LocalTime time, int seatNum) { //여기도 주석처리함 10:22
+//        this.date = date;
+//        this.time = time;
+//        this.seatNum = seatNum;
+//    }
 }
