@@ -7,10 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ReserervationModal from './ReserervationModal';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import './BG.css';
 
 
 const Reservation = () => {
@@ -91,53 +93,57 @@ const Reservation = () => {
     }, []);
 
     return (
-        <div className='a'>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="right">날짜</TableCell>
-                            <TableCell align="right">시간</TableCell>
-                            <TableCell align="right">좌석번호</TableCell>
-                            <TableCell align="right">예약변경</TableCell>
-                            <TableCell align="right">예약취소</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {users.map((row) => (
-                            <TableRow
-                                key={row.uid}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell align="right">{row.date}</TableCell>
-                                <TableCell align="right">{row.time}</TableCell>
-                                <TableCell align="right">{row.seatNum}</TableCell>
-                                <TableCell align="right">
-                                    <Button onClick={(e) => handleSubmitModify(e, row.rno)}>
-                                        <EditIcon variant="contained" color="primary" />
-                                    </Button>
-                                </TableCell>
-                                <TableCell align="right">
-                                    <Button onClick={(e) => handleSubmit(e, row.rno)}>
-                                        <DeleteIcon variant="contained" color="primary" />
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            {open && (
-                <ReserervationModal f={(a) => {
-                    console.log('여기에 수정된 데이터가 와야되 ', a)
-                    setUsers(a)
-                }}
-                    room={reservation}
-                    open={open}
-                    onClose={() => setOpen(false)}  // 모달을 닫을 수 있게 setOpen을 사용
-                />
-            )}
-        </div>
+        <Container className='containerBG' maxWidth={false}>
+            <Box className='boxBG' sx={{ width: '80%' }}>
+                <div className='a'>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="right">날짜</TableCell>
+                                    <TableCell align="right">시간</TableCell>
+                                    <TableCell align="right">좌석번호</TableCell>
+                                    <TableCell align="right">예약변경</TableCell>
+                                    <TableCell align="right">예약취소</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {users.map((row) => (
+                                    <TableRow
+                                        key={row.uid}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell align="right">{row.date}</TableCell>
+                                        <TableCell align="right">{row.time}</TableCell>
+                                        <TableCell align="right">{row.seatNum}</TableCell>
+                                        <TableCell align="right">
+                                            <Button onClick={(e) => handleSubmitModify(e, row.rno)}>
+                                                <EditIcon variant="contained" color="primary" />
+                                            </Button>
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <Button onClick={(e) => handleSubmit(e, row.rno)}>
+                                                <DeleteIcon variant="contained" color="primary" />
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    {open && (
+                        <ReserervationModal f={(a) => {
+                            console.log('여기에 수정된 데이터가 와야되 ', a)
+                            setUsers(a)
+                        }}
+                            room={reservation}
+                            open={open}
+                            onClose={() => setOpen(false)}  // 모달을 닫을 수 있게 setOpen을 사용
+                        />
+                    )}
+                </div>
+            </Box>
+        </Container>
     )
 }
 

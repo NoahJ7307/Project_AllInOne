@@ -1,26 +1,33 @@
 package com.allinone.apart.prototype.controller;
 
-import com.allinone.apart.prototype.service.LoginService;
+import com.allinone.apart.prototype.mapper.ApartMapper;
 import com.allinone.apart.prototype.vo.ApartVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
 
     @Autowired
-    private LoginService loginService;
+    private ApartMapper mapper;
 
     @PostMapping
-    public ResponseEntity<String> login(@RequestBody ApartVO vo) {
-        boolean isAuthenticated = loginService.comparePw(vo.getMid(), vo.getPassword());
-        if (isAuthenticated) {
-            return ResponseEntity.ok().body("Login successful");
+    public String login(@RequestBody ApartVO vo) {
+        String correctPw = mapper.checkMid(vo.getMid());
+
+        if (correctPw == null) {
+            System.out.println("존재하지 않는 ID 입니다...");
+            return "ID not found";
+        }
+
+        if (correctPw.equals(vo.getPassword())) {
+            System.out.println("로그인 성공 !!");
+
+            return "Login successful";
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            System.out.println("비밀번호가 올바르지 않습니다...");
+            return "Invalid credentials";
         }
     }
 }

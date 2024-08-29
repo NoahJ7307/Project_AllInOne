@@ -14,7 +14,8 @@
             date_visit ,
             dong_visit ,
             ho_visit)
-        values(#{name_visit}, #{phone_visit},#{carNumber_visit},#{date_visit},#{dong_visit},#{ho_visit} )
+        values(#{name_visit}, #{phone_visit},#{carNumber_visit},
+            #{date_visit},#{dong_visit},#{ho_visit} )
     </insert>
 
     <delete id="delete" parameterType="int">

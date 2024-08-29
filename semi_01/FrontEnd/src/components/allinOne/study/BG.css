@@ -1,0 +1,32 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    max-width: 100vw;
+}
+
+.containerBG {
+    height: 120vh;
+    width: 100vw;
+    display: flex;
+    background: url(../../img/studyroom_b.jpg);
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    box-shadow: 3;
+    padding: 1.5em;
+}
+
+.boxBG {
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 1.5em;
+    border-radius: 1em;
+    box-shadow: 3px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}

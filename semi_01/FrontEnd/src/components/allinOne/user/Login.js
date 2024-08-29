@@ -27,17 +27,21 @@ const Login = () => {
 
         axios.post(apiUrl, { mid, password })
             .then((response) => {
-                if (response.status === 200) {
+                const message = response.data; // 서버 응답 데이터
+                if (message === 'Login successful') {
                     alert('접속 성공');
                     navigate('/');
+                } else if (message === 'ID not found') {
+                    alert('존재하지 않는 ID입니다.');
+                } else if (message === 'Invalid credentials') {
+                    alert('ID와 비밀번호가 불일치 합니다.');
+                } else {
+                    alert('알 수 없는 응답입니다.');
                 }
             })
             .catch((error) => {
-                if (error.response && error.response.status === 401) {
-                    alert('ID와 비밀번호가 불일치 합니다.');
-                } else {
-                    console.error('There was an error submitting the form:', error);
-                }
+                alert('서버와의 연결이 실패했습니다.');
+                console.error('There was an error submitting the form:', error);
             });
     }
     return (
@@ -46,8 +50,8 @@ const Login = () => {
                 component="main"
                 maxWidth={false}
                 sx={{
-                    height: '90vh',
-                    width: '50vw',
+                    height: '100vh',
+                    width: '100vw',
                     display: 'flex',
                     justifyContent: 'center',
                     backgroundImage: `url(${login_bg})`,
@@ -62,7 +66,7 @@ const Login = () => {
                     sx={{
                         width: '100%',
                         maxWidth: 400,
-                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.75)',
                         padding: 4,
                         borderRadius: 2,
                         boxShadow: 3,

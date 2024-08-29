@@ -1,0 +1,36 @@
+/* 전체 Navbar */
+.app-bar {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px 20px;
+    color: black;
+}
+
+/* 아이콘 스타일 */
+.icons-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    color: inherit;
+    margin-left: 1em;
+}
+
+
+/* 메뉴 링크 스타일 */
+.menu-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 10px;
+}
+
+/* 메뉴 아이콘 스타일 */
+.menu-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}

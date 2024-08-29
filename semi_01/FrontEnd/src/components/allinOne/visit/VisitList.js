@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Modal, Select, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Modal, Select, TextField, Typography } from '@mui/material';
 import { DataGrid, gridPageCountSelector, GridPagination, useGridApiContext, useGridSelector } from '@mui/x-data-grid';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import MuiPagination from '@mui/material/Pagination';
+import './BG.css';
 
 function Pagination({ page, onPageChange, className }) {
     const apiRef = useGridApiContext();
@@ -65,7 +66,7 @@ const VisitList = () => {
     }, []);
 
     const handleOpen = () => {
-        if (selected.length !== 1) {
+        if (selected.length > 1) {
             alert("데이터 수정은 1개씩 가능합니다");
             return;
         }
@@ -206,190 +207,178 @@ const VisitList = () => {
         { field: 'ho_visit', headerName: '호', type: 'number', width: 70 },
     ];
 
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
 
     return (
-        <Box sx={{ flex: 4, p: 2, height: '80vh' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2, mb: 2 }}>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                    <Button variant="contained" onClick={handleDelete}>삭제</Button>
-                    <Button variant="contained" onClick={handleOpen}>수정</Button>
-                </Box>
+        <Container className='containerBGv' maxWidth={false}>
+            <Box className='boxBGv' sx={{ width: '80%' }}>
                 <Box>
-                    <FormControl sx={{ mt: 2, mx: 2, minWidth: 120 }}>
-                        <InputLabel id="search-category-label">검색 카테고리</InputLabel>
-                        <Select
-                            labelId="search-category-label"
-                            value={searchCategory}
-                            onChange={handleSearchCategoryChange}
-                            label="검색 카테고리"
-                        >
-                            <MenuItem value="name_visit">방문자 이름</MenuItem>
-                            <MenuItem value="phone_visit">방문자 전화번호</MenuItem>
-                            <MenuItem value="carNumber_visit">차량번호</MenuItem>
-                            <MenuItem value="dong_visit">동</MenuItem>
-                            <MenuItem value="ho_visit">호</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <TextField
-                        sx={{ mt: 2, mx: 2 }}
-                        required
-                        label="검색어 입력"
-                        value={searchItem}
-                        onChange={handleSearchInputChange}
-                        variant="outlined"
-                    />
-                    <Button variant="contained" onClick={handleSearch} sx={{ mt: 2, mx: 2 }}>검색</Button>
+                    <Box sx={{ display: 'flex', gap: 2 }}>
+                        <Button variant="contained" onClick={handleDelete}>삭제</Button>
+                        <Button variant="contained" onClick={handleOpen}>수정</Button>
+                    </Box>
+                    <Box>
+                        <FormControl sx={{ mt: 2, mx: 2, minWidth: 120 }}>
+                            <InputLabel id="search-category-label">검색 카테고리</InputLabel>
+                            <Select
+                                labelId="search-category-label"
+                                value={searchCategory}
+                                onChange={handleSearchCategoryChange}
+                                label="검색 카테고리"
+                            >
+                                <MenuItem value="name_visit">방문자 이름</MenuItem>
+                                <MenuItem value="phone_visit">방문자 전화번호</MenuItem>
+                                <MenuItem value="carNumber_visit">차량번호</MenuItem>
+                                <MenuItem value="dong_visit">동</MenuItem>
+                                <MenuItem value="ho_visit">호</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <TextField
+                            sx={{ mt: 2, mx: 2 }}
+                            required
+                            label="검색어 입력"
+                            value={searchItem}
+                            onChange={handleSearchInputChange}
+                            variant="outlined"
+                        />
+                        <Button variant="contained" onClick={handleSearch} sx={{ mt: 2, mx: 2 }}>검색</Button>
+                    </Box>
                 </Box>
-            </Box>
-            <div style={{ flex: 1, width: '100%' }}>
-                <DataGrid
-                    rows={users}
-                    columns={columns}
-                    checkboxSelection
-                    onRowSelectionModelChange={itm => setSelected(itm)}
-                    pagination
-                    slots={{
-                        pagination: CustomPagination,
+                <div style={{ flex: 1, width: '100%' }}>
+                    <DataGrid
+                        rows={users}
+                        columns={columns}
+                        checkboxSelection
+                        onRowSelectionModelChange={itm => setSelected(itm)}
+                        pagination
+                        slots={{
+                            pagination: CustomPagination,
+                        }}
+                        initialState={{
+                            pagination: { paginationModel: { pageSize: 7 } },
+                        }}
+                    />
+                </div>
+
+                <Modal open={open} onClose={handleClose}>
+                    <Box sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        bgcolor: 'background.paper',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        width: 400,
+                        p: 4,
                     }}
-                    initialState={{
-                        pagination: { paginationModel: { pageSize: 7 } },
-                    }}
-                />
-            </div>
-
-
-
-
-            <Modal open={open} onClose={handleClose}>
-                <Box sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    bgcolor: 'background.paper',
-                    border: '2px solid #000',
-                    boxShadow: 24,
-                    width: 400,
-                    p: 4,
-                }}
-                    component="form"
-                    noValidate
-                    autoComplete="off">
-                    <Typography variant="h6" fontWeight={100} mb={2}>
-                        방문 예약
-                    </Typography>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} sx={{ mt: 2 }}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="name_visit"
-                                label="방문자 이름"
-                                value={formData.name_visit}
-                                onChange={handleInputChange}
-                                variant="outlined"
-                                error={error.name_visit}
-                                helperText={error.name_visit ? '필수 항목 입니다' : ''}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} sx={{ mt: 2 }}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="phone_visit"
-                                label="방문자 전화번호"
-                                value={formData.phone_visit}
-                                onChange={handleInputChange}
-                                variant="outlined"
-                                error={error.phone_visit}
-                                helperText={error.phone_visit ? '필수 항목 입니다' : ''}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} sx={{ mt: 2 }}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="carNumber_visit"
-                                label="방문자 차량번호"
-                                value={formData.carNumber_visit}
-                                onChange={handleInputChange}
-                                variant="outlined"
-                                error={error.carNumber_visit}
-                                helperText={error.carNumber_visit ? '필수 항목 입니다' : ''}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} sx={{ mt: 2 }}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="dong_visit"
-                                label="방문 동"
-                                value={formData.dong_visit}
-                                onChange={handleInputChange}
-                                variant="outlined"
-                                error={error.dong_visit}
-                                helperText={error.dong_visit ? '필수 항목 입니다' : ''}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} sx={{ mt: 2 }}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="ho_visit"
-                                label="호수"
-                                value={formData.ho_visit}
-                                onChange={handleInputChange}
-                                variant="outlined"
-                                error={error.ho_visit}
-                                helperText={error.ho_visit ? '필수 항목 입니다' : ''}
-                            />
-                        </Grid>
-                    </Grid>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        component="form"
+                        noValidate
+                        autoComplete="off">
+                        <Typography variant="h6" fontWeight={100} mb={2}>
+                            방문 예약
+                        </Typography>
                         <Grid container spacing={3}>
                             <Grid item xs={12} sx={{ mt: 2 }}>
-                                <DemoContainer components={['DesktopDatePicker']}>
-                                    <DesktopDatePicker
-                                        required
-                                        fullWidth
-                                        id="date_visit"
-                                        label="방문 일자"
-                                        value={formData.date_visit}
-                                        onChange={handleDateChange}
-                                        renderInput={(params) => <TextField {...params} />} />
-                                </DemoContainer>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="name_visit"
+                                    label="방문자 이름"
+                                    value={formData.name_visit}
+                                    onChange={handleInputChange}
+                                    variant="outlined"
+                                    error={error.name_visit}
+                                    helperText={error.name_visit ? '필수 항목 입니다' : ''}
+                                />
                             </Grid>
                         </Grid>
-                    </LocalizationProvider>
-                    <Button type="submit" variant="contained" sx={{ mt: 2 }}
-                        onClick={handleUpdate}
-                    >수정</Button>
-                    <Button type="submit" variant="contained" sx={{ mx:2, mt: 2 }}
-                        onClick={handleClose}
-                    >취소</Button>
-                </Box>
-            </Modal >
-
-        </Box >
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} sx={{ mt: 2 }}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="phone_visit"
+                                    label="방문자 전화번호"
+                                    value={formData.phone_visit}
+                                    onChange={handleInputChange}
+                                    variant="outlined"
+                                    error={error.phone_visit}
+                                    helperText={error.phone_visit ? '필수 항목 입니다' : ''}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} sx={{ mt: 2 }}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="carNumber_visit"
+                                    label="방문자 차량번호"
+                                    value={formData.carNumber_visit}
+                                    onChange={handleInputChange}
+                                    variant="outlined"
+                                    error={error.carNumber_visit}
+                                    helperText={error.carNumber_visit ? '필수 항목 입니다' : ''}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} sx={{ mt: 2 }}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="dong_visit"
+                                    label="방문 동"
+                                    value={formData.dong_visit}
+                                    onChange={handleInputChange}
+                                    variant="outlined"
+                                    error={error.dong_visit}
+                                    helperText={error.dong_visit ? '필수 항목 입니다' : ''}
+                                />
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} sx={{ mt: 2 }}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="ho_visit"
+                                    label="호수"
+                                    value={formData.ho_visit}
+                                    onChange={handleInputChange}
+                                    variant="outlined"
+                                    error={error.ho_visit}
+                                    helperText={error.ho_visit ? '필수 항목 입니다' : ''}
+                                />
+                            </Grid>
+                        </Grid>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <Grid container spacing={3}>
+                                <Grid item xs={12} sx={{ mt: 2 }}>
+                                    <DemoContainer components={['DesktopDatePicker']}>
+                                        <DesktopDatePicker
+                                            required
+                                            fullWidth
+                                            id="date_visit"
+                                            label="방문 일자"
+                                            value={formData.date_visit}
+                                            minDate={dayjs()}
+                                            onChange={handleDateChange}
+                                            renderInput={(params) => <TextField {...params} />} />
+                                    </DemoContainer>
+                                </Grid>
+                            </Grid>
+                        </LocalizationProvider>
+                        <Button type="submit" variant="contained" sx={{ mt: 2 }}
+                            onClick={handleUpdate}
+                        >수정</Button>
+                        <Button type="submit" variant="contained" sx={{ mx: 2, mt: 2 }}
+                            onClick={handleClose}
+                        >취소</Button>
+                    </Box>
+                </Modal >
+            </Box>
+        </Container>
     );
 }
 

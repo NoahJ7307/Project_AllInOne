@@ -14,3 +14,8 @@ create table visit_park(
 set sql_safe_updates = 0;
 select * from visit_park;
 delete from visit_park;
+insert into visit_park(name_visit,phone_visit,carNumber_visit,date_visit,dong_visit,ho_visit) 
+	values('정승균','123111111','123','2024-08-26','101','9999');
+
+update visit_park set name_visit='1111',carNumber_visit='1111' where id_visit = 8;
+select * from visit_park where name_visit like '%2%';

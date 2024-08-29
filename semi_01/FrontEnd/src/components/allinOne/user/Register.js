@@ -118,8 +118,8 @@ const Register = () => {
                 component="main"
                 maxWidth={false}
                 sx={{
-                    height: '90vh',
-                    width: '50vw',
+                    height: '130vh',
+                    width: '100vw',
                     display: 'flex',
                     justifyContent: 'center',
                     backgroundImage: `url(${register})`,
@@ -133,8 +133,9 @@ const Register = () => {
                 <Box
                     sx={{
                         width: '100%',
+                        height: '105vh',
                         maxWidth: 400,
-                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.75)',
                         padding: 4,
                         borderRadius: 2,
                         boxShadow: 3,
