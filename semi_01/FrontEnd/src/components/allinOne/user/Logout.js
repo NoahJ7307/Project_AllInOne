@@ -1,14 +1,16 @@
-import { Box } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
+import './BG.css';
 
 const Logout = () => {
     return (
-        <Box
-            bgcolor="pink"
-            sx={{
-                flex: 4, p: 2,
-                height: '100vh'
-            }}>Logout</Box>
+        <Container className='containerBGu' maxWidth={false}>
+            <Box className='boxBGu' sx={{ width: '80%' }}>
+                <Typography variant="h6" fontWeight={100} mb={1} style={{ textAlign: 'center' }}>
+                    로그아웃 되었습니다
+                </Typography>
+            </Box>
+        </Container>
     )
 }
 

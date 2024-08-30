@@ -168,6 +168,7 @@ const Register = () => {
                                     fullWidth
                                     id="password"
                                     label="비밀번호"
+                                    type="password"
                                     value={formData.password}
                                     onChange={handleInputChange}
                                     error={!!errors.password}

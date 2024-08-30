@@ -211,8 +211,12 @@ const VisitList = () => {
     return (
         <Container className='containerBGv' maxWidth={false}>
             <Box className='boxBGv' sx={{ width: '80%' }}>
-                <Box>
-                    <Box sx={{ display: 'flex', gap: 2 }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                    }}>
+                    <Box sx={{ display: 'flex', height: 40, gap: 2, mt: 2 }}>
                         <Button variant="contained" onClick={handleDelete}>삭제</Button>
                         <Button variant="contained" onClick={handleOpen}>수정</Button>
                     </Box>
@@ -245,6 +249,7 @@ const VisitList = () => {
                 </Box>
                 <div style={{ flex: 1, width: '100%' }}>
                     <DataGrid
+                        sx={{ mt: 2, mx: 2 }}
                         rows={users}
                         columns={columns}
                         checkboxSelection
